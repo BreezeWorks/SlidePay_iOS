@@ -23,7 +23,6 @@
 		0E8ECE1117B2C7DD000EFE1C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8ECE1017B2C7DD000EFE1C /* Foundation.framework */; };
 		0E8ECE2017B2C7DD000EFE1C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8ECE1F17B2C7DD000EFE1C /* SenTestingKit.framework */; };
 		0E8ECE2317B2C7DD000EFE1C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8ECE1017B2C7DD000EFE1C /* Foundation.framework */; };
-		0E8ECE2617B2C7DD000EFE1C /* libSlidePayCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8ECE0D17B2C7DD000EFE1C /* libSlidePayCore.a */; };
 		0E8ECE2C17B2C7DD000EFE1C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E8ECE2A17B2C7DD000EFE1C /* InfoPlist.strings */; };
 		FA0C209C17F5FB52003789F1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209B17F5FB52003789F1 /* MobileCoreServices.framework */; };
 		FA0C209E17F5FB59003789F1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209D17F5FB59003789F1 /* CFNetwork.framework */; };
@@ -33,7 +32,16 @@
 		FA0C20A317F5FB88003789F1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209D17F5FB59003789F1 /* CFNetwork.framework */; };
 		FA2473B617FF80BC00A2C626 /* libReaderAPI-2.0.0-beta1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2473B317FF80BB00A2C626 /* libReaderAPI-2.0.0-beta1.a */; };
 		FA2473B917FF81A800A2C626 /* SwipeListener.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2473B817FF81A800A2C626 /* SwipeListener.m */; };
-		FA4870F017FC966B00A7D6CE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4870EF17FC966B00A7D6CE /* libPods.a */; };
+		FA484D96181876860014CB2D /* libReaderAPI-2.0.0-beta1-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2473B217FF80BB00A2C626 /* libReaderAPI-2.0.0-beta1-simulator.a */; };
+		FA484D97181876920014CB2D /* SwipeListener.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2473B817FF81A800A2C626 /* SwipeListener.m */; };
+		FA484D98181876920014CB2D /* SPAuthenticate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9D4AC017F1FE7C00A335CA /* SPAuthenticate.m */; };
+		FA484D99181876920014CB2D /* SPPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9D4ABC17F0E25D00A335CA /* SPPayment.m */; };
+		FA484D9A181876920014CB2D /* SPRemoteResource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9D4AB917F0AF5900A335CA /* SPRemoteResource.m */; };
+		FA484D9B181876B30014CB2D /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EB81F0317B4751A00F5F65A /* libstdc++.dylib */; };
+		FA484D9F181876FA0014CB2D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA484D9C181876FA0014CB2D /* AudioToolbox.framework */; };
+		FA484DA1181876FA0014CB2D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA484D9E181876FA0014CB2D /* CoreAudio.framework */; };
+		FA484DA3181877060014CB2D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA484DA2181877060014CB2D /* MediaPlayer.framework */; };
+		FA484DA5181877440014CB2D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA484DA4181877440014CB2D /* libPods.a */; };
 		FA58BFD217FD228D0061D50B /* SlidePayCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58BFD117FD228D0061D50B /* SlidePayCoreTests.m */; };
 		FA9D4ABA17F0AF5900A335CA /* SPRemoteResource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9D4AB917F0AF5900A335CA /* SPRemoteResource.m */; };
 		FA9D4ABD17F0E25D00A335CA /* SPPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9D4ABC17F0E25D00A335CA /* SPPayment.m */; };
@@ -89,6 +97,11 @@
 		FA2473B417FF80BB00A2C626 /* ReaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderController.h; path = SlidePayHardware/Rambler/ReaderController.h; sourceTree = "<group>"; };
 		FA2473B717FF81A800A2C626 /* SwipeListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwipeListener.h; path = SlidePayHardware/Rambler/SwipeListener.h; sourceTree = "<group>"; };
 		FA2473B817FF81A800A2C626 /* SwipeListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwipeListener.m; path = SlidePayHardware/Rambler/SwipeListener.m; sourceTree = "<group>"; };
+		FA484D9C181876FA0014CB2D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FA484D9D181876FA0014CB2D /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		FA484D9E181876FA0014CB2D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		FA484DA2181877060014CB2D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		FA484DA4181877440014CB2D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		FA4870EF17FC966B00A7D6CE /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		FA58BFD017FD0CF50061D50B /* TestingEnv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingEnv.h; sourceTree = "<group>"; };
 		FA58BFD117FD228D0061D50B /* SlidePayCoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidePayCoreTests.m; sourceTree = "<group>"; };
@@ -120,14 +133,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA4870F017FC966B00A7D6CE /* libPods.a in Frameworks */,
+				FA484DA5181877440014CB2D /* libPods.a in Frameworks */,
+				FA484DA3181877060014CB2D /* MediaPlayer.framework in Frameworks */,
+				FA484D9F181876FA0014CB2D /* AudioToolbox.framework in Frameworks */,
+				FA484DA1181876FA0014CB2D /* CoreAudio.framework in Frameworks */,
+				FA484D9B181876B30014CB2D /* libstdc++.dylib in Frameworks */,
+				FA484D96181876860014CB2D /* libReaderAPI-2.0.0-beta1-simulator.a in Frameworks */,
 				FAD014F517F6099400758187 /* UIKit.framework in Frameworks */,
 				FA0C20A317F5FB88003789F1 /* CFNetwork.framework in Frameworks */,
 				FA0C20A217F5FB83003789F1 /* MobileCoreServices.framework in Frameworks */,
 				FA0C20A117F5FB7D003789F1 /* Security.framework in Frameworks */,
 				0E8ECE2017B2C7DD000EFE1C /* SenTestingKit.framework in Frameworks */,
 				0E8ECE2317B2C7DD000EFE1C /* Foundation.framework in Frameworks */,
-				0E8ECE2617B2C7DD000EFE1C /* libSlidePayCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +176,11 @@
 		0E8ECE0F17B2C7DD000EFE1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA484DA4181877440014CB2D /* libPods.a */,
+				FA484DA2181877060014CB2D /* MediaPlayer.framework */,
+				FA484D9C181876FA0014CB2D /* AudioToolbox.framework */,
+				FA484D9D181876FA0014CB2D /* AudioUnit.framework */,
+				FA484D9E181876FA0014CB2D /* CoreAudio.framework */,
 				FA4870EF17FC966B00A7D6CE /* libPods.a */,
 				FAD0158E17F6ECAE00758187 /* SystemConfiguration.framework */,
 				FAD014F417F6099400758187 /* UIKit.framework */,
@@ -375,6 +397,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA484D97181876920014CB2D /* SwipeListener.m in Sources */,
+				FA484D98181876920014CB2D /* SPAuthenticate.m in Sources */,
+				FA484D99181876920014CB2D /* SPPayment.m in Sources */,
+				FA484D9A181876920014CB2D /* SPRemoteResource.m in Sources */,
 				FA58BFD217FD228D0061D50B /* SlidePayCoreTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +536,10 @@
 				GCC_PREFIX_HEADER = "SlidePayCore/SlidePayCore-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "SlidePayCoreTests/SlidePayCoreTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core/SlidePayHardware/Rambler",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -527,6 +557,10 @@
 				GCC_PREFIX_HEADER = "SlidePayCore/SlidePayCore-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "SlidePayCoreTests/SlidePayCoreTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core/SlidePayHardware/Rambler",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};

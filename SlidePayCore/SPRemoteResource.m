@@ -11,6 +11,7 @@
 
 static NSString * realEndpoint = nil;
 static NSString * token;
+static NSString * apiKey;
 static NSIndexSet * successCodes;
 static NSIndexSet * failureCodes;
 static RKObjectManager *sharedManager;
@@ -29,7 +30,10 @@ static RKObjectManager *sharedManager;
         self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:_endpoint]];
         [self.objectManager.HTTPClient setDefaultHeader:@"Content-Type" value:@"application/json"];
         self.objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
-        if(token){
+        if(apiKey){
+            NSLog(@"setting api key to %@",apiKey);
+            [self.objectManager.HTTPClient setDefaultHeader:@"x-cube-api-key" value:apiKey];
+        }else if(token){
             [self.objectManager.HTTPClient setDefaultHeader:@"x-cube-token" value:token];
         }
         
@@ -42,13 +46,15 @@ static RKObjectManager *sharedManager;
 +(void) reset{
     realEndpoint = nil;
     token = nil;
+    [sharedManager.HTTPClient setDefaultHeader:@"x-cube-api-key" value:nil];
+    [sharedManager.HTTPClient setDefaultHeader:@"x-cube-token"   value:nil];
 }
 
 -(NSString*) authToken{
-    return token;
+    return [token copy];
 }
 -(NSString*) endpoint{
-    return realEndpoint;
+    return [realEndpoint copy];
 }
 
 +(void) configureWithResponse:(NSDictionary*)response;{
@@ -68,10 +74,15 @@ static RKObjectManager *sharedManager;
     }else{
         [sharedManager.HTTPClient setDefaultHeader:@"x-cube-token" value:token];
     }
-    
 }
 
-+(RKObjectManager*) sharedManager{
++(void) setAPIKey:(NSString *)key withEnpoint:(NSString*)ep;{
+    apiKey = key;
+    realEndpoint = (ep && ![ep isEqualToString:@""]) ? [NSString stringWithFormat:@"https://%@.getcube.com:65532/rest.svc/API/",ep] : nil;
+    [sharedManager.HTTPClient setDefaultHeader:@"x-cube-api-key" value:apiKey];
+}
+
++(RKObjectManager*) sharedManager{ //apikeys always supercede tokens when evaluating requests on the backend
     
     if(realEndpoint && !sharedManager){
         static dispatch_once_t onceToken;
@@ -79,7 +90,11 @@ static RKObjectManager *sharedManager;
             sharedManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:realEndpoint]];
             [sharedManager.HTTPClient setDefaultHeader:@"Content-Type" value:@"application/json"];
             [sharedManager.HTTPClient setDefaultHeader:@"x-cube-encoding" value:@"application/json"];
-            [sharedManager.HTTPClient setDefaultHeader:@"x-cube-token" value:token];
+            if(apiKey){
+                [sharedManager.HTTPClient setDefaultHeader:@"x-cube-api-key" value:apiKey];
+            }else if(token){
+                [sharedManager.HTTPClient setDefaultHeader:@"x-cube-token" value:token];
+            }
             sharedManager.requestSerializationMIMEType = RKMIMETypeJSON;
         });
     }
@@ -108,15 +123,12 @@ static RKObjectManager *sharedManager;
     NSNumber *successObj = [response valueForKey:@"success"];
     
     if(successObj == nil){
-//        NSLog(@"WARNING *** success not present when evaluating response: %@",response);
         return FALSE;
     }
     if((NSNull*)successObj == [NSNull null]){
-//        NSLog(@"WARNING *** success null when evaluating response: %@",response);
         return FALSE;
     }
     if(successObj.boolValue == FALSE){
-//        NSLog(@"WARNING *** success was false when evaluating response: %@",response);
         NSDictionary * dataDict = [response valueForKey:@"data"];
         NSNumber * errorCode = [dataDict valueForKey:@"error_code"];
         NSString * errorMessage = [dataDict valueForKey:@"error_text"];

@@ -15,7 +15,7 @@ typedef void(^PermissionsSuccessBlock)();
 /**
  *  Interacting with our remote layer requires authentication. We provide two ways of doing this:
  
-    API Key Authentication - not available w/ the iOS SDK (yet)
+    API Key Authentication - Call API keys map to a company_id, location_id, and user_master_id
     Username/Password  Authenitcation - @see -loginWithSuccess:failure:
 */
 
@@ -31,6 +31,5 @@ typedef void(^PermissionsSuccessBlock)();
  *  @param failure A block called when the login operation has failed to complete successfully
  */
 -(void) login:(LoginSuccessBlock)success failure:(ResourceFailureBlock)failure;
-//-(void) getPermissions:(PermissionsSuccessBlock)success failure:(ResourceFailureBlock)failure; coming soon
 
 @end

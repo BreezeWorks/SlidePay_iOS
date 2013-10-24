@@ -27,7 +27,7 @@ typedef void(^ResourceFailureBlock)(NSInteger serverCode, NSString* serverMessag
 @interface SPRemoteResource : NSObject
 
 /**
- *  The resource desginator portion of the URL.
+ *  The resource designator portion of the URL.
  */
 @property (nonatomic) NSString * resource;
 
@@ -47,7 +47,13 @@ typedef void(^ResourceFailureBlock)(NSInteger serverCode, NSString* serverMessag
 +(BOOL) checkResponseObjectForSuccessFlag:(id)responseObject failure:(ResourceFailureBlock)failure;
 +(void)reset;
 +(NSDictionary*)responseFromOperation:(AFHTTPRequestOperation*)operation;
-//+(BOOL) checkResponseForSuccessFlag:(NSDictionary*)response;
+
+/**
+ Setting the APIKey will set the API key on the shared manager and for every remote resource created after the key is set. You do not need to log in if you set the API key.
+ 
+ @param key your API key as created on the web
+ */
++(void) setAPIKey:(NSString*)key withEnpoint:(NSString*)ep;;
 
 //
 +(RKObjectManager*) sharedManager;
