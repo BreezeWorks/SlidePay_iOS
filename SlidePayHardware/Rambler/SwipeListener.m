@@ -102,7 +102,7 @@ static NSArray * keys = nil;
 }
 - (void)onDecodeError:(ReaderControllerDecodeResult)decodeState;{
     
-    NSString * message = decodeState == ReaderControllerDecodeResultSwipeFail ? @"We were unable to processing your credit card swipe. Please swipe again." :
+    NSString * message = decodeState == ReaderControllerDecodeResultSwipeFail ? @"We were unable to process your credit card swipe. Please swipe again." :
     decodeState == ReaderControllerDecodeResultCRCError     ? @"There was an error while processing your credit card swipe." :
 	decodeState == ReaderControllerDecodeResultCommError    ? @"There was a device communication error while processing your credit card swipe. Please wait a moment and swipe again." :
     @"There was an unkown error while processing your credit card swipe.";

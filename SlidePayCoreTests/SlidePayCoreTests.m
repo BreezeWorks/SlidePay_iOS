@@ -43,7 +43,11 @@
         [[NSRunLoop currentRunLoop] runUntilDate:twoSecondsFromwNow];
     }
 }
-
+-(void) test0ApiKey{
+    [SPRemoteResource setAPIKey:SPTESTING_apikey withEnpoint:SPTESTING_endpoint];
+    [self test90GetPayment];
+    [SPRemoteResource setAPIKey:nil withEnpoint:nil];
+}
 -(void) test1UnknownUserLogin{
 
     SPAuthenticate *auth = [SPAuthenticate new];
@@ -238,8 +242,9 @@
 
 -(void) test90GetPayment{
     SPPayment *emptyPayment = [SPPayment new];
-    [emptyPayment getPaymentWithID:10727 success:^(SPPayment *payment) {
-        STAssertTrue([emptyPayment.paymentID isEqualToNumber:@10727], @"Payment was not retrieved correctly");
+    [emptyPayment getPaymentWithID:11207 success:^(SPPayment *payment) {
+        STAssertTrue([emptyPayment.paymentID isEqualToNumber:@11207], @"Payment was not retrieved correctly");
+        NSLog(@"payment = %@",[emptyPayment asJSON]);
         done = true;
     } failure:^(NSInteger serverCode, NSString *serverMessage, NSError *error) {
         STFail(@"Failed to get payment.");
@@ -282,7 +287,6 @@
     [self spinYourDamnWheels];
     
 }
-
 
 
 

@@ -52,6 +52,7 @@
 -(id) init{
     if(self = [super init]){
         [self.objectManager addResponseDescriptor:[self getPaymentResponseDescriptor]];
+        [self.objectManager addResponseDescriptor:[self makePaymentResponseDescriptor]];
     }
     return self;
 }
@@ -144,6 +145,7 @@
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:paymentMapping method:RKRequestMethodPOST pathPattern:@"payment/simple" keyPath:@"data" statusCodes:[SPPayment successCodes]];
     return responseDescriptor;
 }
+
 -(NSArray*) commonRequestKeys{
     return @[@"amount",
              @"notes",
@@ -186,6 +188,14 @@
 -(RKRequestDescriptor*)keyedPaymentRequestDescriptor{
     return [self requestDescriptorWithKeys:[self keyedRequestKeys]];
 }
+-(RKRequestDescriptor*)requestDescriptor{
+    if(self.encryption_vendor && ![self.encryption_vendor isEqualToString:@""]){
+        return [self swipedPaymentRequestDescriptor];
+    }else{
+        return [self keyedPaymentRequestDescriptor];
+    }
+}
+
 
 #pragma mark making a payment
 -(void) payWithSuccessHandler:(PaymentSuccessBlock)success failure:(ResourceFailureBlock)failure{
@@ -247,7 +257,7 @@
 -(void) getPaymentWithID:(NSInteger)paymentID success:(GetPaymentSuccess)success failure:(ResourceFailureBlock)failure{
     
     NSString * path = [NSString stringWithFormat:@"payment/%d", paymentID ? paymentID : 0];
-    //GET payment/id always returns and array - this screws up
+    //GET payment/id always returns an array - this causes some difficulty in the mapping process
     [self.objectManager getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSArray *payments = [mappingResult array];
         if(payments.count != 1){
@@ -289,10 +299,8 @@
 
 -(NSDictionary *) asJSONObject;{
     
-    
-    RKRequestDescriptor *descriptor = [[self.objectManager requestDescriptors] firstObject];
+    RKRequestDescriptor *descriptor = [self requestDescriptor];
     if(!descriptor){ NSLog(@"no descriptor for object serialization"); return nil;}
-    
     NSError * error;
     NSDictionary * serializedObject = [RKObjectParameterization parametersWithObject:self requestDescriptor:descriptor error:&error];
     if(error){
@@ -307,6 +315,9 @@
 
 -(NSString *)asJSON{
     NSDictionary * jsonDict = [self asJSONObject];
+    if(!jsonDict){
+        return nil;
+    }
     NSError * error;
     NSData * jsonData = [RKMIMETypeSerialization dataFromObject:jsonDict MIMEType:RKMIMETypeJSON error:&error];
     if(error){

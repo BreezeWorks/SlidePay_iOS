@@ -8,7 +8,12 @@
 
 #import "SPAuthenticate.h"
 
+@interface SPAuthenticate ()
+
+@end
+
 @implementation SPAuthenticate
+
 
 -(id) init{
     [SPRemoteResource reset];
@@ -44,7 +49,6 @@
         [SPRemoteResource responseSanityCheck:[SPRemoteResource responseFromOperation:operation] errorCode:&errorCode errorMessage:&errorMessage];
         failure(errorCode ? errorCode.integerValue : 0,errorMessage,error);
     }];
-    
 }
 
 @end
