@@ -8,8 +8,8 @@
 #import "SlidePayCoreTests.h"
 #import "SPAuthenticate.h"
 #import "SPPayment.h"
-#import "TestingEnv.h"
 #import "SwipeListener.h"
+#include "TestingEnv.h"
 
 @interface SlidePayCoreTests ()
 @property (nonatomic,copy) NSString *username;

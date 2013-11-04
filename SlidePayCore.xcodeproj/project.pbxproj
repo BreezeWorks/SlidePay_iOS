@@ -24,13 +24,13 @@
 		0E8ECE2017B2C7DD000EFE1C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8ECE1F17B2C7DD000EFE1C /* SenTestingKit.framework */; };
 		0E8ECE2317B2C7DD000EFE1C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8ECE1017B2C7DD000EFE1C /* Foundation.framework */; };
 		0E8ECE2C17B2C7DD000EFE1C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E8ECE2A17B2C7DD000EFE1C /* InfoPlist.strings */; };
+		D2A274CFE5C8478687EBFF4C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDFC2A3A5744FC4B0FAD1EE /* libPods.a */; };
 		FA0C209C17F5FB52003789F1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209B17F5FB52003789F1 /* MobileCoreServices.framework */; };
 		FA0C209E17F5FB59003789F1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209D17F5FB59003789F1 /* CFNetwork.framework */; };
 		FA0C20A017F5FB74003789F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209F17F5FB74003789F1 /* Security.framework */; };
 		FA0C20A117F5FB7D003789F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209F17F5FB74003789F1 /* Security.framework */; };
 		FA0C20A217F5FB83003789F1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209B17F5FB52003789F1 /* MobileCoreServices.framework */; };
 		FA0C20A317F5FB88003789F1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209D17F5FB59003789F1 /* CFNetwork.framework */; };
-		FA2473B617FF80BC00A2C626 /* libReaderAPI-2.0.0-beta1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2473B317FF80BB00A2C626 /* libReaderAPI-2.0.0-beta1.a */; };
 		FA2473B917FF81A800A2C626 /* SwipeListener.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2473B817FF81A800A2C626 /* SwipeListener.m */; };
 		FA484D96181876860014CB2D /* libReaderAPI-2.0.0-beta1-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2473B217FF80BB00A2C626 /* libReaderAPI-2.0.0-beta1-simulator.a */; };
 		FA484D97181876920014CB2D /* SwipeListener.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2473B817FF81A800A2C626 /* SwipeListener.m */; };
@@ -51,6 +51,7 @@
 		FAD014FB17F6DEA200758187 /* SPPayment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA9D4ABB17F0E25D00A335CA /* SPPayment.h */; };
 		FAD014FC17F6DEA200758187 /* SPRemoteResource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA9D4AB817F0AF5900A335CA /* SPRemoteResource.h */; };
 		FAD0158F17F6ECAE00758187 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD0158E17F6ECAE00758187 /* SystemConfiguration.framework */; };
+		FAF6F884182828B2009EF698 /* libReaderAPI-2.0.0-beta1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2473B317FF80BB00A2C626 /* libReaderAPI-2.0.0-beta1.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		0E8ECE2B17B2C7DD000EFE1C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0E8ECE2D17B2C7DD000EFE1C /* SlidePayCoreTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlidePayCoreTests.h; sourceTree = "<group>"; };
 		0EB81F0317B4751A00F5F65A /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		DDDFC2A3A5744FC4B0FAD1EE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0F50EEB6C84331A0F315B9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		FA0C209B17F5FB52003789F1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		FA0C209D17F5FB59003789F1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -101,9 +103,8 @@
 		FA484D9D181876FA0014CB2D /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		FA484D9E181876FA0014CB2D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		FA484DA2181877060014CB2D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		FA484DA4181877440014CB2D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		FA484DA4181877440014CB2D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		FA4870EF17FC966B00A7D6CE /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		FA58BFD017FD0CF50061D50B /* TestingEnv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingEnv.h; sourceTree = "<group>"; };
 		FA58BFD117FD228D0061D50B /* SlidePayCoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidePayCoreTests.m; sourceTree = "<group>"; };
 		FA9D4AB817F0AF5900A335CA /* SPRemoteResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPRemoteResource.h; sourceTree = "<group>"; };
 		FA9D4AB917F0AF5900A335CA /* SPRemoteResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPRemoteResource.m; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		FA9D4AC017F1FE7C00A335CA /* SPAuthenticate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPAuthenticate.m; path = ../SPAuthenticate.m; sourceTree = "<group>"; };
 		FAD014F417F6099400758187 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FAD0158E17F6ECAE00758187 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FAF6F88318282728009EF698 /* TestingEnv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestingEnv.h; path = SlidePayCoreTests/TestingEnv.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,12 +122,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA2473B617FF80BC00A2C626 /* libReaderAPI-2.0.0-beta1.a in Frameworks */,
+				FAF6F884182828B2009EF698 /* libReaderAPI-2.0.0-beta1.a in Frameworks */,
 				FAD0158F17F6ECAE00758187 /* SystemConfiguration.framework in Frameworks */,
 				FA0C20A017F5FB74003789F1 /* Security.framework in Frameworks */,
 				FA0C209E17F5FB59003789F1 /* CFNetwork.framework in Frameworks */,
 				FA0C209C17F5FB52003789F1 /* MobileCoreServices.framework in Frameworks */,
 				0E8ECE1117B2C7DD000EFE1C /* Foundation.framework in Frameworks */,
+				D2A274CFE5C8478687EBFF4C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +157,7 @@
 		0E8ECE0417B2C7DD000EFE1C = {
 			isa = PBXGroup;
 			children = (
+				FAF6F88318282728009EF698 /* TestingEnv.h */,
 				FA3F913417FF64C0008FB505 /* SlidePayHardware */,
 				0EB81F0317B4751A00F5F65A /* libstdc++.dylib */,
 				0E8ECE1217B2C7DD000EFE1C /* SlidePayCore */,
@@ -189,6 +193,7 @@
 				FA0C209B17F5FB52003789F1 /* MobileCoreServices.framework */,
 				0E8ECE1017B2C7DD000EFE1C /* Foundation.framework */,
 				0E8ECE1F17B2C7DD000EFE1C /* SenTestingKit.framework */,
+				DDDFC2A3A5744FC4B0FAD1EE /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -221,7 +226,6 @@
 				0E8ECE2D17B2C7DD000EFE1C /* SlidePayCoreTests.h */,
 				FA58BFD117FD228D0061D50B /* SlidePayCoreTests.m */,
 				0E8ECE2817B2C7DD000EFE1C /* Supporting Files */,
-				FA58BFD017FD0CF50061D50B /* TestingEnv.h */,
 			);
 			path = SlidePayCoreTests;
 			sourceTree = "<group>";
@@ -495,9 +499,10 @@
 				GCC_PREFIX_HEADER = "SlidePayCore/SlidePayCore-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/SlidePayCore\\\\\\\"",
+					"\\\\\\\\\\\\\\\"$(SRCROOT)/SlidePayCore\\\\\\\\\\\\\\\"",
 					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core",
 					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core/SlidePayHardware/Rambler",
+					/Users/Alex/Cube_iOS/SDK/SlidePay_iOS/SlidePayHardware/Rambler,
 				);
 				OTHER_LDFLAGS = "$(inherited),-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -514,9 +519,10 @@
 				GCC_PREFIX_HEADER = "SlidePayCore/SlidePayCore-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/SlidePayCore\\\\\\\"",
+					"\\\\\\\\\\\\\\\"$(SRCROOT)/SlidePayCore\\\\\\\\\\\\\\\"",
 					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core",
 					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core/SlidePayHardware/Rambler",
+					/Users/Alex/Cube_iOS/SDK/SlidePay_iOS/SlidePayHardware/Rambler,
 				);
 				OTHER_LDFLAGS = "$(inherited),-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
