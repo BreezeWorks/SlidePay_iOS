@@ -15,7 +15,7 @@ typedef void(^PermissionsSuccessBlock)();
 /**
  *  Interacting with our remote layer requires authentication. We provide two ways of doing this:
  
-    API Key Authentication - Call API keys map to a company_id, location_id, and user_master_id
+    API Key Authentication - use -
     Username/Password  Authenitcation - @see -loginWithSuccess:failure:
 */
 

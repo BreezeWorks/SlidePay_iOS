@@ -27,10 +27,6 @@
     NSLog(@"DEALLOC *** SPAuthenticate");
 }
 
-//-(void) getPermissions:(PermissionsSuccessBlock)success failure:(ResourceFailureBlock)failure{
-
-//}
-
 -(void) login:(LoginSuccessBlock)success failure:(ResourceFailureBlock)failure{
     
     [self.objectManager.HTTPClient setDefaultHeader:@"x-cube-email"    value:self.username];

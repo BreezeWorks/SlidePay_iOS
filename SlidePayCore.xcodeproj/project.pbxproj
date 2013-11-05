@@ -32,7 +32,6 @@
 		FA0C20A217F5FB83003789F1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209B17F5FB52003789F1 /* MobileCoreServices.framework */; };
 		FA0C20A317F5FB88003789F1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0C209D17F5FB59003789F1 /* CFNetwork.framework */; };
 		FA2473B917FF81A800A2C626 /* SwipeListener.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2473B817FF81A800A2C626 /* SwipeListener.m */; };
-		FA484D96181876860014CB2D /* libReaderAPI-2.0.0-beta1-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2473B217FF80BB00A2C626 /* libReaderAPI-2.0.0-beta1-simulator.a */; };
 		FA484D97181876920014CB2D /* SwipeListener.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2473B817FF81A800A2C626 /* SwipeListener.m */; };
 		FA484D98181876920014CB2D /* SPAuthenticate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9D4AC017F1FE7C00A335CA /* SPAuthenticate.m */; };
 		FA484D99181876920014CB2D /* SPPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9D4ABC17F0E25D00A335CA /* SPPayment.m */; };
@@ -52,6 +51,7 @@
 		FAD014FC17F6DEA200758187 /* SPRemoteResource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA9D4AB817F0AF5900A335CA /* SPRemoteResource.h */; };
 		FAD0158F17F6ECAE00758187 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD0158E17F6ECAE00758187 /* SystemConfiguration.framework */; };
 		FAF6F884182828B2009EF698 /* libReaderAPI-2.0.0-beta1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2473B317FF80BB00A2C626 /* libReaderAPI-2.0.0-beta1.a */; };
+		FAF6F88618297B21009EF698 /* libReaderAPI-2.0.0-beta1-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2473B217FF80BB00A2C626 /* libReaderAPI-2.0.0-beta1-simulator.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,12 +136,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF6F88618297B21009EF698 /* libReaderAPI-2.0.0-beta1-simulator.a in Frameworks */,
 				FA484DA5181877440014CB2D /* libPods.a in Frameworks */,
 				FA484DA3181877060014CB2D /* MediaPlayer.framework in Frameworks */,
 				FA484D9F181876FA0014CB2D /* AudioToolbox.framework in Frameworks */,
 				FA484DA1181876FA0014CB2D /* CoreAudio.framework in Frameworks */,
 				FA484D9B181876B30014CB2D /* libstdc++.dylib in Frameworks */,
-				FA484D96181876860014CB2D /* libReaderAPI-2.0.0-beta1-simulator.a in Frameworks */,
 				FAD014F517F6099400758187 /* UIKit.framework in Frameworks */,
 				FA0C20A317F5FB88003789F1 /* CFNetwork.framework in Frameworks */,
 				FA0C20A217F5FB83003789F1 /* MobileCoreServices.framework in Frameworks */,
@@ -500,9 +500,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/SlidePayCore\\\\\\\\\\\\\\\"",
-					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core",
-					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core/SlidePayHardware/Rambler",
-					/Users/Alex/Cube_iOS/SDK/SlidePay_iOS/SlidePayHardware/Rambler,
+					"$(SRCROOT)/SlidePayHardware/Rambler",
 				);
 				OTHER_LDFLAGS = "$(inherited),-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -520,9 +518,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/SlidePayCore\\\\\\\\\\\\\\\"",
-					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core",
-					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core/SlidePayHardware/Rambler",
-					/Users/Alex/Cube_iOS/SDK/SlidePay_iOS/SlidePayHardware/Rambler,
+					"$(SRCROOT)/SlidePayHardware/Rambler",
 				);
 				OTHER_LDFLAGS = "$(inherited),-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -544,7 +540,7 @@
 				INFOPLIST_FILE = "SlidePayCoreTests/SlidePayCoreTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core/SlidePayHardware/Rambler",
+					"$(SRCROOT)/SlidePayHardware/Rambler",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -565,7 +561,7 @@
 				INFOPLIST_FILE = "SlidePayCoreTests/SlidePayCoreTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Alex/Cube_iOS/SDK_iOS/mobile-slidepay-core/SlidePayHardware/Rambler",
+					"$(SRCROOT)/SlidePayHardware/Rambler",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;

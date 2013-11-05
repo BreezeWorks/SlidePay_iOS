@@ -257,6 +257,7 @@
 -(void) getPaymentWithID:(NSInteger)paymentID success:(GetPaymentSuccess)success failure:(ResourceFailureBlock)failure{
     
     NSString * path = [NSString stringWithFormat:@"payment/%d", paymentID ? paymentID : 0];
+//    [self.objectManager get]
     //GET payment/id always returns an array - this causes some difficulty in the mapping process
     [self.objectManager getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSArray *payments = [mappingResult array];
@@ -326,6 +327,10 @@
     }
     NSString * jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return jsonString;
+}
+
+-(void) sign:(UIImage *)signature{
+    
 }
 
 

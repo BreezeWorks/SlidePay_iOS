@@ -118,6 +118,12 @@ typedef void(^GetPaymentSuccess)(SPPayment*);
 
 
 /**
+ 
+ */
+-(void) sign:(UIImage*)signature;
+
+
+/**
  Returns a JSON representation of the payment object. If you aren't processing payments directly from your iOS app, then you'll probably be passing around the result of this method.
 
  @return A JSON representation of this object as an NSString. It is appropriate for use with the payment/simple API.

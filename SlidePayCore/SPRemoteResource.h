@@ -13,8 +13,6 @@
 #define SUCCESS_FLAG_FALSE -2
 
 
-
-
 /**
  *  Typedef for the block response handler used when a remote resource request fails
  *
@@ -40,7 +38,7 @@ typedef void(^ResourceFailureBlock)(NSInteger serverCode, NSString* serverMessag
 @property (nonatomic,readonly) NSString * TAG;
 
 
-+(void) configureWithResponse:(NSDictionary*)response;
++(void) configureWithResponse:(NSDictionary*)response; //uses the values from the dictionary to configure all subsequent requests. Assumes
 +(NSIndexSet*) successCodes;
 +(NSIndexSet*) failureCodes;
 +(BOOL)responseSanityCheck:(NSDictionary*)response errorCode:(NSNumber**)errorCode errorMessage:(NSString**)errorMessage;
