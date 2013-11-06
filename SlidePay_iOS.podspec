@@ -16,10 +16,10 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Rambler' do |sr|
-	  sr.source_files = 'SlidePayHardware/Rambler/*.{h,m}'
-	  sr.libraries = 'ReaderAPI-2.0.0-beta1'#,'SlidePayHardware/Rambler/libReaderAPI-2.0.0-beta1'
-	  sr.vendored_libraries = 'SlidePayHardware/Rambler/libReaderAPI-2.0.0-beta1.a'
-	  sr.ios.frameworks = 'AudioToolBox','CoreAudio','MediaPlayer'
+	sr.source_files = 'SlidePayHardware/Rambler/*.{h,m}'
+	#sr.libraries = 'ReaderAPI-2.0.0-beta1'
+	sr.vendored_libraries = 'SlidePayHardware/Rambler/*.a'
+	sr.ios.frameworks = 'AudioToolBox','CoreAudio','MediaPlayer'
   end
 
   s.subspec 'Magtek' do |sm|
