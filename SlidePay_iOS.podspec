@@ -12,11 +12,11 @@ Pod::Spec.new do |s|
   s.subspec 'Payments' do |sc|
     sc.dependency 'RestKit', '~>0.20.0'
     sc.ios.frameworks = 'CFNetwork', 'Security', 'MobileCoreServices', 'SystemConfiguration'
-    sc.source_files = 'SlidePayCore/','*.h','*.m'
+    sc.source_files = 'SlidePayCore/*.{h,m}'
   end
 
   s.subspec 'Rambler' do |sr|
-	  sr.source_files = 'SlidePayHardware/Rambler/','*.h','*.m'
+	  sr.source_files = 'SlidePayHardware/Rambler/*.{h,m}'
 	  sr.libraries = 'SlidePayHardware/Rambler/libReaderAPI-2.0.0-beta1','libReaderAPI-2.0.0-beta1.a'
 	  sr.vendored_libraries = 'SlidePayHardware/Rambler/libReaderAPI-2.0.0-beta1.a'
 	  sr.ios.frameworks = 'AudioToolBox','CoreAudio','MediaPlayer'
