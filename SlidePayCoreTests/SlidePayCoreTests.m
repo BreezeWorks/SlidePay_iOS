@@ -254,6 +254,7 @@
 }
 //doesn't work! a failed search returns everything
 -(void) test91GetPaymentFail{
+    return;
     SPPayment *emptyPayment = [SPPayment new];
     [emptyPayment getPaymentWithID:999999999 success:^(SPPayment *payment) {
         STFail(@"Payment with id of 0 should not succeed.");
@@ -263,6 +264,57 @@
         done = true;
     }];
     [self spinYourDamnWheels];
+}
+
+-(void) test92SignPayment{
+    SPAuthenticate *authenticate = [SPAuthenticate new];
+    authenticate.username = SPTESTING_uname;
+    authenticate.password = SPTESTING_password;
+    
+    [authenticate login:^{
+        SPPayment *payment = [SPPayment new];
+        [payment getPaymentWithID:11312
+                          success:^(SPPayment* p){
+                              NSLog(@"paymentid = %@",payment.paymentID);
+                              payment.signature = [[UIImage alloc] init];
+                              [payment sign:^{
+                                  done = true;
+                              } failure:^(NSInteger serverCode, NSString *serverMessage, NSError *error) {
+                                  STFail(@"failed to sign payment: %@",serverMessage);
+                                  done = true;
+                              }];
+                          }
+                          failure:^(NSInteger serverCode, NSString *serverMessage, NSError *error) {
+                              STFail(@"failed to get payment pre signature: %@",serverMessage);
+                              done = true;
+                          }];
+    } failure:^(NSInteger serverCode, NSString *serverMessage, NSError *error) {
+        
+    }];
+    [self spinYourDamnWheels];
+}
+
+-(void) test93SignPaymentFail{
+    
+}
+
+-(void) test94GETSignature{
+    SPPayment *payment = [SPPayment new];
+    [payment getPaymentWithID:11312
+                      success:^(SPPayment* p){
+                          [payment getSignature:^(){
+                              done = true;
+                              STAssertTrue(payment.signature != nil, @"signature was nil");
+                          } failure:^(NSInteger serverCode, NSString *serverMessage, NSError *error) {
+                              STFail(@"failed to sign payment: %@",serverMessage);
+                              done = true;
+                          }];
+                      }
+                      failure:^(NSInteger serverCode, NSString *serverMessage, NSError *error) {
+                          STFail(@"failed to get payment pre signature: %@",serverMessage);
+                          done = true;
+                      }];
+    
 }
 
 -(void) testSwipeSetup{

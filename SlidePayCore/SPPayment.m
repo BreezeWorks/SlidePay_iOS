@@ -9,6 +9,13 @@
 #import "SPPayment.h"
 #import <objc/runtime.h>
 
+@interface SPSignature : NSObject
+@property (nonatomic) NSString * signature; //base64 encoding
+@property (nonatomic) NSNumber * payment_id;
+@property (nonatomic) NSNumber * signature_id;//
+@end
+@implementation SPSignature
+@end
 
 @interface SPPayment ()
 
@@ -39,6 +46,7 @@
 @property (nonatomic) NSString * status_message;
 @property (nonatomic) NSNumber * is_approved;
 @property (nonatomic) NSString * device_type;
+@property (nonatomic) NSString * signature_cloud_object_id;
 
 @property (nonatomic) RKObjectMapping *getMapping;
 
@@ -53,6 +61,10 @@
     if(self = [super init]){
         [self.objectManager addResponseDescriptor:[self getPaymentResponseDescriptor]];
         [self.objectManager addResponseDescriptor:[self makePaymentResponseDescriptor]];
+        
+        [self.objectManager addRequestDescriptor:[self signatureRequestDescriptor]];
+        [self.objectManager addResponseDescriptor:[self signaturePOSTResponseDescriptor]];
+        [self.objectManager addResponseDescriptor:[self signatureGETResponseDescriptor]];
     }
     return self;
 }
@@ -77,6 +89,10 @@
         [self.objectManager addRequestDescriptor:descriptor];
         [self.objectManager addResponseDescriptor:[self makePaymentResponseDescriptor]];
         [self.objectManager addResponseDescriptor:[self getPaymentResponseDescriptor]];
+        
+        [self.objectManager addRequestDescriptor:[self signatureRequestDescriptor]];
+        [self.objectManager addResponseDescriptor:[self signaturePOSTResponseDescriptor]];
+        [self.objectManager addResponseDescriptor:[self signatureGETResponseDescriptor]];
     }
     return self;
 }
@@ -93,11 +109,54 @@
         [self.objectManager addRequestDescriptor:[self keyedPaymentRequestDescriptor]];
         [self.objectManager addResponseDescriptor:[self makePaymentResponseDescriptor]];
         [self.objectManager addResponseDescriptor:[self getPaymentResponseDescriptor]];
+        
+        [self.objectManager addRequestDescriptor:[self signatureRequestDescriptor]];
+        [self.objectManager addResponseDescriptor:[self signaturePOSTResponseDescriptor]];
+        [self.objectManager addResponseDescriptor:[self signatureGETResponseDescriptor]];
     }
     return self;
 }
 
-#pragma mark Restkit crap
+#pragma mark Restkit
+
+-(RKResponseDescriptor*)signatureGETResponseDescriptor{
+    
+    RKObjectMapping *signatureMapping = [RKObjectMapping mappingForClass:[SPSignature class]];
+//    [signatureMapping addAttributeMappingsFromDictionary:@{@"body_string":@"signature",
+//                                                           @"cloud_object_id":@"signature_id"
+//                                                           }];
+    [signatureMapping addAttributeMappingsFromDictionary:@{@"data":@"signature"}];
+    RKResponseDescriptor *descriptor = [RKResponseDescriptor responseDescriptorWithMapping:signatureMapping
+                                                                                    method:RKRequestMethodGET
+                                                                               pathPattern:@"payment/signature_string/:payment_id"
+                                                                                   keyPath:nil
+                                                                               statusCodes:[SPPayment successCodes]];
+    return descriptor;
+}
+-(RKResponseDescriptor*)signaturePOSTResponseDescriptor{
+    
+    RKObjectMapping *signatureMapping = [RKObjectMapping mappingForClass:[SPSignature class]];
+    [signatureMapping addAttributeMappingsFromDictionary:@{@"body_string":@"signature",
+                                                           @"cloud_object_id":@"signature_id"
+                                                           }];
+    RKResponseDescriptor *descriptor = [RKResponseDescriptor responseDescriptorWithMapping:signatureMapping
+                                                                                    method:RKRequestMethodPOST
+                                                                               pathPattern:@"payment/write_signature"
+                                                                                   keyPath:@"data"
+                                                                               statusCodes:[SPPayment successCodes]];
+    return descriptor;
+}
+-(RKRequestDescriptor*)signatureRequestDescriptor{
+    
+    RKObjectMapping *signatureMapping = [RKObjectMapping mappingForClass:[SPSignature class]];
+    [signatureMapping addAttributeMappingsFromArray:@[@"signature",@"payment_id"]];
+    RKRequestDescriptor *descriptor = [RKRequestDescriptor requestDescriptorWithMapping:[signatureMapping inverseMapping]
+                                                                            objectClass:[SPSignature class]
+                                                                            rootKeyPath:nil
+                                                                                 method:RKRequestMethodPOST];
+    return descriptor;
+}
+
 -(RKResponseDescriptor*)getPaymentResponseDescriptor{
     RKObjectMapping *paymentMapping = [RKObjectMapping mappingForClass:[SPPayment class]];
     [paymentMapping addAttributeMappingsFromArray:@[
@@ -128,7 +187,8 @@
                                                     @"status_code",
                                                     @"status_message",
                                                     @"is_approved",
-                                                    @"device_type"
+                                                    @"device_type",
+                                                    @"signature_cloud_object_id"
                                                     ]];
     [paymentMapping addAttributeMappingsFromDictionary:@{@"payment_id":@"paymentID"}];
     
@@ -281,6 +341,7 @@
 }
 
 // =( because it was easier than trying to mod restkit
+// (used because every GET request returns an array - this makes it impossible to map the response directly into the calling object)
 -(void) copyPayment:(SPPayment*)source{
     
     unsigned int outCount, i;
@@ -296,7 +357,7 @@
     
 }
 
-#pragma mark Different Payment representations
+#pragma mark Different payment representations
 
 -(NSDictionary *) asJSONObject;{
     
@@ -329,8 +390,45 @@
     return jsonString;
 }
 
--(void) sign:(UIImage *)signature{
-    
+#pragma mark signing payments
+
+-(void) sign:(void(^)())success failure:(ResourceFailureBlock)failure;{
+    SPSignature *signature = [SPSignature new];
+    signature.payment_id = self.paymentID;
+    NSData * imageData = UIImagePNGRepresentation(self.signature);
+    signature.signature = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSLog(@"signature: %@",signature.signature);
+    [self.objectManager postObject:signature path:@"payment/write_signature" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        success();
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSNumber *errorCode;
+        NSString *errorMessage;
+        NSData * bodyData = operation.HTTPRequestOperation.request.HTTPBody;
+        NSString * bodyString = [[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding];
+        NSLog(@"body string: %@",bodyString);
+        [SPRemoteResource responseSanityCheck:[SPRemoteResource responseFromOperation:operation.HTTPRequestOperation] errorCode:&errorCode errorMessage:&errorMessage];
+        failure(errorCode ? errorCode.integerValue : 0,errorMessage,error);
+    }];
+}
+
+-(void) getSignature:(void(^)())success failure:(ResourceFailureBlock)failure;{
+    SPSignature *signature = [SPSignature new];
+    signature.payment_id = self.paymentID;
+    NSString * path = [NSString stringWithFormat:@"payment/signature_string/%@",self.paymentID];
+    [self.objectManager getObject:signature path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSData * imageData = [[NSData alloc] initWithBase64EncodedString:signature.signature options:0];
+        UIImage * signatureImage = [UIImage imageWithData:imageData];
+        self.signature = signatureImage;
+        success();
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSNumber *errorCode;
+        NSString *errorMessage;
+        NSData * bodyData = operation.HTTPRequestOperation.request.HTTPBody;
+        NSString * bodyString = [[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding];
+        NSLog(@"body string: %@",bodyString);
+        [SPRemoteResource responseSanityCheck:[SPRemoteResource responseFromOperation:operation.HTTPRequestOperation] errorCode:&errorCode errorMessage:&errorMessage];
+        failure(errorCode ? errorCode.integerValue : 0,errorMessage,error);
+    }];
 }
 
 

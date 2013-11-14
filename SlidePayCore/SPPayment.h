@@ -27,6 +27,7 @@ typedef void(^RefundSuccess)(NSInteger paymentID);
  *  A payment has been successfully retrieved from the backend.
  */
 @class SPPayment;
+@class SPSignature;
 typedef void(^GetPaymentSuccess)(SPPayment*);
 
 /** This class governs the creation of objects that encapsulate a payment, performing a transaction using that payment, and refunding a payment. Authentication is required to use any method which creates, refunds, or retieves a payment.
@@ -118,21 +119,32 @@ typedef void(^GetPaymentSuccess)(SPPayment*);
 
 
 /**
+ Signs the receiver. Requires that the paymentID and signature properties be non-nil
  
- */
--(void) sign:(UIImage*)signature;
+ @param success The block invoked if the payment is signed successfuly
+ @param failure The block invoked if the signature request fails
+*/
+-(void) sign:(void(^)())success failure:(ResourceFailureBlock)failure;
+
+
+/**
+ Populates the signature property of the receiver.
+ 
+ @param success Invoked on success.
+ @param failure Invoked on failure.
+*/
+-(void) getSignature:(void(^)())success failure:(ResourceFailureBlock)failure;
 
 
 /**
  Returns a JSON representation of the payment object. If you aren't processing payments directly from your iOS app, then you'll probably be passing around the result of this method.
-
  @return A JSON representation of this object as an NSString. It is appropriate for use with the payment/simple API.
  */
 -(NSString*) asJSON;
 
+
 /**
  @return A representation of this payment as an NSDictionary. The key names are consistent w/ those necessary for payment through the payment/simple API.
- 
  @see asJSON
  */
 -(NSDictionary *) asJSONObject;
@@ -142,7 +154,7 @@ typedef void(^GetPaymentSuccess)(SPPayment*);
 @property (nonatomic, copy)NSString * latitude;
 @property (nonatomic, copy)NSString * longitude;
 @property (readonly) NSNumber * paymentID;
-
-
+@property (nonatomic, strong) UIImage *signature; //-getPaymentWithID:success:failure: does not populate this field. You must call getSignature on a payment w/ a valid paymentID
 
 @end
+
