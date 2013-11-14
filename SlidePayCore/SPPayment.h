@@ -27,6 +27,7 @@ typedef void(^RefundSuccess)(NSInteger paymentID);
  *  A payment has been successfully retrieved from the backend.
  */
 @class SPPayment;
+@class SPSignature;
 typedef void(^GetPaymentSuccess)(SPPayment*);
 
 /** This class governs the creation of objects that encapsulate a payment, performing a transaction using that payment, and refunding a payment. Authentication is required to use any method which creates, refunds, or retieves a payment.

@@ -502,7 +502,7 @@
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/SlidePayCore\\\\\\\\\\\\\\\"",
 					"$(SRCROOT)/SlidePayHardware/Rambler",
 				);
-				OTHER_LDFLAGS = "$(inherited),-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -520,7 +520,7 @@
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/SlidePayCore\\\\\\\\\\\\\\\"",
 					"$(SRCROOT)/SlidePayHardware/Rambler",
 				);
-				OTHER_LDFLAGS = "$(inherited),-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

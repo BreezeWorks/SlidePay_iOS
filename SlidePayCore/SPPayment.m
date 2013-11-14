@@ -13,7 +13,8 @@
 @property (nonatomic) NSString * signature; //base64 encoding
 @property (nonatomic) NSNumber * payment_id;
 @property (nonatomic) NSNumber * signature_id;//
-//"cloud_object_id", "body_string" - response
+@end
+@implementation SPSignature
 @end
 
 @interface SPPayment ()
@@ -121,13 +122,14 @@
 -(RKResponseDescriptor*)signatureGETResponseDescriptor{
     
     RKObjectMapping *signatureMapping = [RKObjectMapping mappingForClass:[SPSignature class]];
-    [signatureMapping addAttributeMappingsFromDictionary:@{@"body_string":@"signature",
-                                                           @"cloud_object_id":@"signature_id"
-                                                           }];
+//    [signatureMapping addAttributeMappingsFromDictionary:@{@"body_string":@"signature",
+//                                                           @"cloud_object_id":@"signature_id"
+//                                                           }];
+    [signatureMapping addAttributeMappingsFromDictionary:@{@"data":@"signature"}];
     RKResponseDescriptor *descriptor = [RKResponseDescriptor responseDescriptorWithMapping:signatureMapping
                                                                                     method:RKRequestMethodGET
-                                                                               pathPattern:@"payment/signature/:payment_id"
-                                                                                   keyPath:@"data"
+                                                                               pathPattern:@"payment/signature_string/:payment_id"
+                                                                                   keyPath:nil
                                                                                statusCodes:[SPPayment successCodes]];
     return descriptor;
 }
@@ -149,7 +151,7 @@
     RKObjectMapping *signatureMapping = [RKObjectMapping mappingForClass:[SPSignature class]];
     [signatureMapping addAttributeMappingsFromArray:@[@"signature",@"payment_id"]];
     RKRequestDescriptor *descriptor = [RKRequestDescriptor requestDescriptorWithMapping:[signatureMapping inverseMapping]
-                                                                            objectClass:[SPPayment class]
+                                                                            objectClass:[SPSignature class]
                                                                             rootKeyPath:nil
                                                                                  method:RKRequestMethodPOST];
     return descriptor;
@@ -395,6 +397,7 @@
     signature.payment_id = self.paymentID;
     NSData * imageData = UIImagePNGRepresentation(self.signature);
     signature.signature = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSLog(@"signature: %@",signature.signature);
     [self.objectManager postObject:signature path:@"payment/write_signature" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success();
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -409,7 +412,23 @@
 }
 
 -(void) getSignature:(void(^)())success failure:(ResourceFailureBlock)failure;{
-    
+    SPSignature *signature = [SPSignature new];
+    signature.payment_id = self.paymentID;
+    NSString * path = [NSString stringWithFormat:@"payment/signature_string/%@",self.paymentID];
+    [self.objectManager getObject:signature path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSData * imageData = [[NSData alloc] initWithBase64EncodedString:signature.signature options:0];
+        UIImage * signatureImage = [UIImage imageWithData:imageData];
+        self.signature = signatureImage;
+        success();
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSNumber *errorCode;
+        NSString *errorMessage;
+        NSData * bodyData = operation.HTTPRequestOperation.request.HTTPBody;
+        NSString * bodyString = [[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding];
+        NSLog(@"body string: %@",bodyString);
+        [SPRemoteResource responseSanityCheck:[SPRemoteResource responseFromOperation:operation.HTTPRequestOperation] errorCode:&errorCode errorMessage:&errorMessage];
+        failure(errorCode ? errorCode.integerValue : 0,errorMessage,error);
+    }];
 }
 
 
