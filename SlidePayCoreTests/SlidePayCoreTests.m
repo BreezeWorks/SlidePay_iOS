@@ -265,6 +265,26 @@
     [self spinYourDamnWheels];
 }
 
+-(void) test92SignPayment{
+    SPPayment *payment = [SPPayment new];
+    [payment getPaymentWithID:11312
+                      success:^(SPPayment* p){
+                          
+                          [payment sign:^{
+                              
+                          } failure:^(NSInteger serverCode, NSString *serverMessage, NSError *error) {
+                              
+                          }];
+                      }
+                      failure:^(NSInteger serverCode, NSString *serverMessage, NSError *error) {
+        
+                      }];
+}
+
+-(void) test93SignPaymentFail{
+    
+}
+
 -(void) testSwipeSetup{
     SwipeListener *listener = [SwipeListener new];
     listener.swipeCompleteBlock = ^(NSDictionary *swipe,int errorCode, NSString *errorMessage){

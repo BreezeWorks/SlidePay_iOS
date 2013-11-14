@@ -108,10 +108,10 @@
 		FA58BFD117FD228D0061D50B /* SlidePayCoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidePayCoreTests.m; sourceTree = "<group>"; };
 		FA9D4AB817F0AF5900A335CA /* SPRemoteResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPRemoteResource.h; sourceTree = "<group>"; };
 		FA9D4AB917F0AF5900A335CA /* SPRemoteResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPRemoteResource.m; sourceTree = "<group>"; };
-		FA9D4ABB17F0E25D00A335CA /* SPPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPayment.h; path = ../SPPayment.h; sourceTree = "<group>"; };
-		FA9D4ABC17F0E25D00A335CA /* SPPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPPayment.m; path = ../SPPayment.m; sourceTree = "<group>"; };
-		FA9D4ABF17F1FE7B00A335CA /* SPAuthenticate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPAuthenticate.h; path = ../SPAuthenticate.h; sourceTree = "<group>"; };
-		FA9D4AC017F1FE7C00A335CA /* SPAuthenticate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPAuthenticate.m; path = ../SPAuthenticate.m; sourceTree = "<group>"; };
+		FA9D4ABB17F0E25D00A335CA /* SPPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPayment.h; path = SlidePayCore/SPPayment.h; sourceTree = SOURCE_ROOT; };
+		FA9D4ABC17F0E25D00A335CA /* SPPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPayment.m; sourceTree = "<group>"; };
+		FA9D4ABF17F1FE7B00A335CA /* SPAuthenticate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPAuthenticate.h; path = SlidePayCore/SPAuthenticate.h; sourceTree = SOURCE_ROOT; };
+		FA9D4AC017F1FE7C00A335CA /* SPAuthenticate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAuthenticate.m; sourceTree = "<group>"; };
 		FAD014F417F6099400758187 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FAD0158E17F6ECAE00758187 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FAF6F88318282728009EF698 /* TestingEnv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestingEnv.h; path = SlidePayCoreTests/TestingEnv.h; sourceTree = "<group>"; };
