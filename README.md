@@ -1,4 +1,4 @@
-SlidePay iOS
+SlidePay iOS (Breeze fork)
 =====================
 
 ## About
