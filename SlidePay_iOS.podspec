@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Payments' do |sc|
     sc.dependency 'RestKit', '~>0.20.0'
+    sc.dependency 'Base64', '~>1.0.1'
     sc.ios.frameworks = 'CFNetwork', 'Security', 'MobileCoreServices', 'SystemConfiguration'
     sc.source_files = 'SlidePayCore/*.{h,m}'
   end
