@@ -8,6 +8,7 @@
 
 #import "SPPayment.h"
 #import <objc/runtime.h>
+#import <Base64/MF_Base64Additions.h>
 
 @interface SPSignature : NSObject
 @property (nonatomic) NSString * signature; //base64 encoding
@@ -396,7 +397,7 @@
     SPSignature *signature = [SPSignature new];
     signature.payment_id = self.paymentID;
     NSData * imageData = UIImagePNGRepresentation(self.signature);
-    signature.signature = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    signature.signature = [imageData base64String];
     NSLog(@"signature: %@",signature.signature);
     [self.objectManager postObject:signature path:@"payment/write_signature" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success();
@@ -416,7 +417,7 @@
     signature.payment_id = self.paymentID;
     NSString * path = [NSString stringWithFormat:@"payment/signature_string/%@",self.paymentID];
     [self.objectManager getObject:signature path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        NSData * imageData = [[NSData alloc] initWithBase64EncodedString:signature.signature options:0];
+        NSData * imageData = [NSData dataWithBase64String:signature.signature];
         UIImage * signatureImage = [UIImage imageWithData:imageData];
         self.signature = signatureImage;
         success();
