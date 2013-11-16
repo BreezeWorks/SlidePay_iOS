@@ -132,11 +132,15 @@ static RKObjectManager *sharedManager;
         NSDictionary * dataDict = [response valueForKey:@"data"];
         NSNumber * errorCode = [dataDict valueForKey:@"error_code"];
         NSString * errorMessage = [dataDict valueForKey:@"error_text"];
+        NSString * statusMessage = [dataDict valueForKey:@"status_message"];
         if(errorCode == nil || (NSNull*)errorCode == [NSNull null] || errorMessage == nil || (NSNull*)errorMessage == [NSNull null]){
             NSLog(@"Bad error dictionary when trying to parse response with success = false: %@",response);
         }else{
             *code = errorCode;
-            *message = errorMessage;
+            
+            NSMutableString *fullMessage = [NSMutableString stringWithString:errorMessage];
+            if (statusMessage) [fullMessage appendFormat:@" %@", statusMessage];
+            *message = [fullMessage copy];
         }
         return FALSE;
     }
