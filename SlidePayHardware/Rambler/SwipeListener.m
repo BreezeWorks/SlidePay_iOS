@@ -20,6 +20,7 @@ static NSArray * keys = nil;
 -(id) init {
     if(self = [super init]){
         //keys = @[KEY_EXP,KEY_KSN,KEY_MASKED,KEY_NAME,KEY_TRACK];
+        [self start];
     }
     return self;
 }
